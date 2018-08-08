@@ -1,7 +1,6 @@
 package com.example.josefernandes.convert;
 
 import android.app.Activity;
-import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -49,8 +48,5 @@ public class ConvertActivity extends Activity {
     private boolean verificaTextoEmBranco() {
         return convert_value_gasolina.getText().toString().isEmpty() || convert_value_alcool.getText().toString().isEmpty();
     }
-
-
-
 
 }
