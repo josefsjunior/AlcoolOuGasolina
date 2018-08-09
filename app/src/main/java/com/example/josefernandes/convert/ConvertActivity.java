@@ -28,9 +28,9 @@ public class ConvertActivity extends Activity {
 
     @Click
     public void convert_button(){
-        if(verificaTextoEmBranco()){
+        if( verificaValorEmBranco() ){
             Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
-        } else if( verificaTextoNegativo() ){
+        } else if( verificaValorNegativo() ){
             Toast.makeText(this, "Preços não podem ser negativos!", Toast.LENGTH_SHORT).show();
         } else {
             float precoGasolina = Float.parseFloat(convert_value_gasolina.getText().toString());
@@ -39,11 +39,11 @@ public class ConvertActivity extends Activity {
         }
     }
 
-    private boolean verificaTextoNegativo() {
+    private boolean verificaValorNegativo() {
         return Float.parseFloat(convert_value_gasolina.getText().toString()) < 0.0 || Float.parseFloat(convert_value_alcool.getText().toString()) < 0.0;
     }
 
-    private boolean verificaTextoEmBranco() {
+    private boolean verificaValorEmBranco() {
         return convert_value_gasolina.getText().toString().isEmpty() || convert_value_alcool.getText().toString().isEmpty();
     }
 
