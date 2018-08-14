@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.analytics.FirebaseAnalytics;
+
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.FragmentById;
@@ -17,6 +19,8 @@ import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLI
 
 @EActivity(R.layout.activity_convert)
 public class ConvertActivity extends Activity {
+
+    private FirebaseAnalytics mFirebaseAnalytics;
 
     @ViewById
     TextView convert_gasolina;
@@ -36,6 +40,7 @@ public class ConvertActivity extends Activity {
         super.onStart();
         convert_gasolina.setText(GASOLINA);
         convert_alcool.setText(ALCOOL);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
     @Click
