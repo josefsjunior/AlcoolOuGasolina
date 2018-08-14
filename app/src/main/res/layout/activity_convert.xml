@@ -71,7 +71,9 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/button_compensa_mais"
         android:text="Qual compensa ?"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/convert_value_gasolina" />

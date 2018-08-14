@@ -1,6 +1,7 @@
 package com.example.josefernandes.convert;
 
 import android.app.Activity;
+import android.support.annotation.MainThread;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -8,7 +9,11 @@ import android.widget.Toast;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
+import org.androidannotations.annotations.FragmentById;
 import org.androidannotations.annotations.ViewById;
+
+import static com.example.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
+import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
 
 @EActivity(R.layout.activity_convert)
 public class ConvertActivity extends Activity {
@@ -25,6 +30,13 @@ public class ConvertActivity extends Activity {
     Button convert_button;
     @ViewById
     TextView convert_text_after_button;
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        convert_gasolina.setText(GASOLINA);
+        convert_alcool.setText(ALCOOL);
+    }
 
     @Click
     public void convert_button(){
