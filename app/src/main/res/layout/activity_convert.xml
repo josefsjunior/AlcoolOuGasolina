@@ -16,11 +16,11 @@
         android:layout_marginTop="8dp"
         android:textColor="@android:color/black"
         android:textSize="30sp"
-        tools:text="Gasolina"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.25"
+        app:layout_constraintHorizontal_bias="0.195"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:text="Gasolina" />
 
     <TextView
         android:id="@+id/convert_alcool"
@@ -28,13 +28,13 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:textSize="30sp"
         android:textColor="@android:color/black"
-        tools:text="Álcool"
+        android:textSize="30sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.702"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/convert_gasolina" />
+        app:layout_constraintTop_toTopOf="@+id/convert_gasolina"
+        tools:text="Álcool" />
 
     <EditText
         android:id="@+id/convert_value_gasolina"
@@ -85,7 +85,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="30dp"
         android:text=""
         android:textColor="@android:color/black"
         android:textSize="30sp"
@@ -115,6 +115,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="by José Fernandes"
+        android:textColor="#BEB66B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
