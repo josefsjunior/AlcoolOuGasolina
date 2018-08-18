@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "491753227076",
+    "firebase_url": "https://pensemelhor-3530d.firebaseio.com",
+    "project_id": "pensemelhor-3530d",
+    "storage_bucket": "pensemelhor-3530d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491753227076:android:297cc59fdb8cfb02",
+        "android_client_info": {
+          "package_name": "com.example.josefernandes.convert"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491753227076-c669vrvla9bh702m8mbr80lilmir19qr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.josefernandes.convert",
+            "certificate_hash": "0cc66a7d48fdb16fceca4535323b29d4c6463a2c"
+          }
+        },
+        {
+          "client_id": "491753227076-7up8mqn4okugm91b7252bmsokgp45lsl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.josefernandes.convert",
+            "certificate_hash": "6a9363be6bc6ef41b05329f82876eab10b0444b8"
+          }
+        },
+        {
+          "client_id": "491753227076-pf1fkhen1va1nb1euik10drh015p5phg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDsS3r5iamEehD05E3EfP3jgzrgQ_Fb91E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491753227076-pf1fkhen1va1nb1euik10drh015p5phg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

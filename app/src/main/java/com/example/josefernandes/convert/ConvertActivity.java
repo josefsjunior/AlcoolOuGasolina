@@ -1,12 +1,18 @@
 package com.example.josefernandes.convert;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.support.annotation.MainThread;
+import android.support.annotation.Nullable;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.androidannotations.annotations.Click;
@@ -21,6 +27,8 @@ import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLI
 public class ConvertActivity extends Activity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
+    private AdView mAdView;
+    private AdRequest adRequest;
 
     @ViewById
     TextView convert_gasolina;
@@ -34,6 +42,15 @@ public class ConvertActivity extends Activity {
     Button convert_button;
     @ViewById
     TextView convert_text_after_button;
+    @ViewById
+    AdView adView;
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
+    }
 
     @Override
     protected void onStart() {
@@ -41,6 +58,7 @@ public class ConvertActivity extends Activity {
         convert_gasolina.setText(GASOLINA);
         convert_alcool.setText(ALCOOL);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+
     }
 
     @Click
