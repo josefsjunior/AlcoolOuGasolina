@@ -1,10 +1,6 @@
 package com.example.josefernandes.convert;
 
 import android.app.Activity;
-import android.os.Bundle;
-import android.support.annotation.MainThread;
-import android.support.annotation.Nullable;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,7 +13,6 @@ import com.google.firebase.analytics.FirebaseAnalytics;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
-import org.androidannotations.annotations.FragmentById;
 import org.androidannotations.annotations.ViewById;
 
 import static com.example.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
@@ -28,8 +23,9 @@ public class ConvertActivity extends Activity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
     private AdView mAdView;
-    private AdRequest adRequest;
 
+    @ViewById
+    AdView adView;
     @ViewById
     TextView convert_gasolina;
     @ViewById
@@ -42,23 +38,28 @@ public class ConvertActivity extends Activity {
     Button convert_button;
     @ViewById
     TextView convert_text_after_button;
-    @ViewById
-    AdView adView;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
+        inserirTextoCombustiveis();
+        inicializarAnalytics();
+        inicializarAnuncios();
+    }
+
+    private void inicializarAnuncios() {
+        MobileAds.initialize(this, "ca-app-pub-8478899305646131~9649848212");
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
+    }
+
+    private void inicializarAnalytics() {
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+    }
+
+    private void inserirTextoCombustiveis() {
         convert_gasolina.setText(GASOLINA);
         convert_alcool.setText(ALCOOL);
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-
     }
 
     @Click

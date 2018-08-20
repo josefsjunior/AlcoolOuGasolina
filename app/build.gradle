@@ -27,7 +27,7 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:+'
     implementation 'com.google.firebase:firebase-core:16.0.0'
     implementation 'com.google.android.gms:play-services-ads:15.0.0'
-    implementation 'com.google.firebase:firebase-ads:11.8.0'
+    implementation 'com.google.firebase:firebase-ads:15.0.0'
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     implementation "org.androidannotations:androidannotations-api:$AAVersion"
     testImplementation 'junit:junit:4.12'
