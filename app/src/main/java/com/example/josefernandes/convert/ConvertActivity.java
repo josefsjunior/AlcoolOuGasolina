@@ -17,6 +17,7 @@ import org.androidannotations.annotations.ViewById;
 
 import static com.example.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
 import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
+import static com.example.josefernandes.convert.ConvertActivityConstantes.ZERO;
 
 @EActivity(R.layout.activity_convert)
 public class ConvertActivity extends Activity {
@@ -48,7 +49,7 @@ public class ConvertActivity extends Activity {
     }
 
     private void inicializarAnuncios() {
-        MobileAds.initialize(this, "ca-app-pub-8478899305646131~9649848212");
+        MobileAds.initialize(this, getString(R.string.id_banner_admob));
         AdRequest adRequest = new AdRequest.Builder().build();
         adView.loadAd(adRequest);
     }
@@ -65,9 +66,9 @@ public class ConvertActivity extends Activity {
     @Click
     public void convert_button(){
         if( verificaValorEmBranco() ){
-            Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
-        } else if( verificaValorNegativo() ){
-            Toast.makeText(this, "Preços não podem ser negativos!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.preencha_todos_os_campos, Toast.LENGTH_SHORT).show();
+        } else if(verificaValorNegativo() || verificaValorInvalido()){
+            Toast.makeText(this, R.string.valores_invalidos, Toast.LENGTH_SHORT).show();
         } else {
             float precoGasolina = Float.parseFloat(convert_value_gasolina.getText().toString());
             float precoAlcool = Float.parseFloat(convert_value_alcool.getText().toString());
@@ -75,8 +76,12 @@ public class ConvertActivity extends Activity {
         }
     }
 
+    private boolean verificaValorInvalido() {
+        return convert_value_gasolina.getText().toString().startsWith(".") || convert_value_alcool.getText().toString().startsWith(".");
+    }
+
     private boolean verificaValorNegativo() {
-        return Float.parseFloat(convert_value_gasolina.getText().toString()) < 0.0 || Float.parseFloat(convert_value_alcool.getText().toString()) < 0.0;
+        return Float.parseFloat(convert_value_gasolina.getText().toString()) < ZERO || Float.parseFloat(convert_value_alcool.getText().toString()) < ZERO;
     }
 
     private boolean verificaValorEmBranco() {
