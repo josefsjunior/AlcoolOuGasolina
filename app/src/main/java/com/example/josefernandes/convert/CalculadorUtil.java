@@ -7,6 +7,8 @@ import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLI
 
 public class CalculadorUtil {
 
+
+
     public static void realizaCalculo(float precoGasolina, float precoAlcool, TextView textoConversao) {
         if(precoGasolina * 0.7 > precoAlcool){
             montaTexto(textoConversao, ALCOOL);
@@ -17,6 +19,12 @@ public class CalculadorUtil {
 
     private static void montaTexto(TextView textoConversao, String combustivel) {
         textoConversao.setText("");
-        textoConversao.setText("Abasteça com " + combustivel);
+        String texto;
+        if(combustivel.equals(GASOLINA)){
+            texto = String.valueOf(R.string.abasteca_gasolina);
+        } else {
+            texto = String.valueOf(R.string.abasteca_alcool);
+        }
+        textoConversao.setText(texto);
     }
 }
