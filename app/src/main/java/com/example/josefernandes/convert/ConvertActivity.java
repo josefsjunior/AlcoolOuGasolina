@@ -38,6 +38,8 @@ public class ConvertActivity extends Activity {
     @ViewById
     Button convert_button;
     @ViewById
+    TextView convert_text_porcentagem;
+    @ViewById
     TextView convert_text_after_button;
 
     @Override
@@ -72,7 +74,7 @@ public class ConvertActivity extends Activity {
         } else {
             float precoGasolina = Float.parseFloat(convert_value_gasolina.getText().toString());
             float precoAlcool = Float.parseFloat(convert_value_alcool.getText().toString());
-            CalculadorUtil.realizaCalculo(precoGasolina, precoAlcool, convert_text_after_button);
+            CalculadorUtil.realizaCalculo(precoGasolina, precoAlcool, convert_text_after_button, convert_text_porcentagem);
         }
     }
 
