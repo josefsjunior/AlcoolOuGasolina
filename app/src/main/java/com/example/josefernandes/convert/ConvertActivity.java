@@ -1,6 +1,7 @@
 package com.example.josefernandes.convert;
 
 import android.app.Activity;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -60,6 +61,13 @@ public class ConvertActivity extends Activity {
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
     }
 
+    public void hideSoftKeyboard() {
+        if(getCurrentFocus()!=null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
     private void inserirTextoCombustiveis() {
         convert_gasolina.setText(GASOLINA);
         convert_alcool.setText(ALCOOL);
@@ -67,6 +75,7 @@ public class ConvertActivity extends Activity {
 
     @Click
     public void convert_button(){
+        hideSoftKeyboard();
         if( verificaValorEmBranco() ){
             Toast.makeText(this, R.string.preencha_todos_os_campos, Toast.LENGTH_SHORT).show();
         } else if(verificaValorNegativo() || verificaValorInvalido()){
