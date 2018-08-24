@@ -2,7 +2,7 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
         <shape android:shape="rectangle">
-            <solid android:color="#BEB66B"/>
+            <solid android:color="@color/backgroundButtonTest"/>
             <corners android:radius="12dp"/>
             <padding
                 android:bottom="5dp"
@@ -13,3 +13,6 @@
     </item>
 
 </selector>
+<!--
+<solid android:color="#BEB66B"/>
+-->

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/backgroundTest"
     tools:context=".ConvertActivity">
 
     <TextView
@@ -44,9 +44,10 @@
         android:layout_marginTop="8dp"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:textAlignment="center"
         android:maxLength="5"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
+        android:imeOptions="actionNext"
         app:layout_constraintEnd_toEndOf="@+id/convert_gasolina"
         app:layout_constraintStart_toStartOf="@+id/convert_gasolina"
         app:layout_constraintTop_toBottomOf="@+id/convert_gasolina" />
@@ -57,9 +58,10 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="numberDecimal"
-        android:textAlignment="center"
         android:maxLength="5"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
+        android:imeOptions="actionDone"
         app:layout_constraintEnd_toEndOf="@+id/convert_alcool"
         app:layout_constraintStart_toStartOf="@+id/convert_alcool"
         app:layout_constraintTop_toTopOf="@+id/convert_value_gasolina" />
@@ -72,7 +74,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
         android:background="@drawable/button_compensa_mais"
-        android:text="Qual compensa ?"
+        android:text="@string/qual_compensa"
         android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -86,8 +88,8 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:textSize="24sp"
         android:textColor="@color/verde"
+        android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/adView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -106,12 +108,12 @@
         android:text=""
         android:textColor="@android:color/black"
         android:textSize="30sp"
-        tools:text="Abasteça com Gasolina"
         app:layout_constraintBottom_toTopOf="@+id/textView7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/convert_text_porcentagem"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="Abasteça com Gasolina" />
 
     <ImageView
         android:id="@+id/imageView"
@@ -148,7 +150,7 @@
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/versao_app"
-        android:textColor="#BEB66B"
+        android:textColor="#FFFFFF"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
