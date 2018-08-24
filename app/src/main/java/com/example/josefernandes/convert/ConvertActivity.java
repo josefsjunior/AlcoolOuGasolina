@@ -3,6 +3,7 @@ package com.example.josefernandes.convert;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -20,9 +21,7 @@ import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
-import static android.icu.text.DateTimePatternGenerator.PatternInfo.OK;
 import static com.example.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
 import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
 import static com.example.josefernandes.convert.ConvertActivityConstantes.ZERO;
@@ -34,8 +33,6 @@ public class ConvertActivity extends Activity {
     private float precoAlcool;
     private FirebaseAnalytics mFirebaseAnalytics;
     private AdView mAdView;
-
-    private NumberFormat format = new DecimalFormat("0.00");
 
     @ViewById
     AdView adView;
@@ -107,10 +104,10 @@ public class ConvertActivity extends Activity {
         builder.setMessage("De acordo com lei 13.033/14 fixou em 27,5% o percentual de álcool na gasolina." +
                 "\nEntão para compensar o preço de 72,5% do litro da gasolina tem que ser inferior ao preço do litro do álcool!" +
                 "\nSeus cálculos:\n" +
-                "Gasolina: R$ "+ convert_value_gasolina.getText().toString() +
-                "\nÁlcool: R$ "+ convert_value_alcool.getText().toString() +
-                "\n72,5% de 1L de gasolina: R$ "+ 2.259);
-        builder.setPositiveButton(OK, new DialogInterface.OnClickListener() {
+                "Gasolina: R$ "+ formataPrecoGasolina(convert_value_gasolina.getText().toString()) +
+                "\nÁlcool: R$ "+ formataPrecoAlcool(convert_value_alcool.getText().toString()) +
+                "\n72,5% de 1L de gasolina: R$ "+ ajustaPorcentagem());
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
             }
@@ -120,9 +117,23 @@ public class ConvertActivity extends Activity {
         builder.show();
     }
 
-    private float ajustaPorcentagem() {
-        float precoGasolinaSetentaPorcento = precoGasolina * 0.725f;
-        return Float.parseFloat(format.format(precoGasolinaSetentaPorcento));
+    @NonNull
+    private String formataPrecoAlcool(String precoAlcool) {
+        return precoAlcool.replace(".", ",");
+    }
+
+    @NonNull
+    private String formataPrecoGasolina(String precoGasolina) {
+        return precoGasolina.replace(".", ",");
+    }
+
+    private String ajustaPorcentagem() {
+        DecimalFormat format = new DecimalFormat("#.000");
+        double precoGasolinaSetentaPorcento = precoGasolina * 0.725;
+        String precoGasolinaSetentaPorcentoTexto = String.valueOf(precoGasolinaSetentaPorcento);
+        precoGasolinaSetentaPorcentoTexto.replace(",", ".");
+        precoGasolinaSetentaPorcento = Double.parseDouble(precoGasolinaSetentaPorcentoTexto);
+        return format.format(precoGasolinaSetentaPorcento);
     }
 
     private boolean verificaValorInvalido() {
