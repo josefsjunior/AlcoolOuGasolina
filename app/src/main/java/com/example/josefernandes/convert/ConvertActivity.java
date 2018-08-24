@@ -1,6 +1,9 @@
 package com.example.josefernandes.convert;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,6 +19,10 @@ import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
 import org.androidannotations.annotations.ViewById;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
+import static android.icu.text.DateTimePatternGenerator.PatternInfo.OK;
 import static com.example.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
 import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
 import static com.example.josefernandes.convert.ConvertActivityConstantes.ZERO;
@@ -23,8 +30,12 @@ import static com.example.josefernandes.convert.ConvertActivityConstantes.ZERO;
 @EActivity(R.layout.activity_convert)
 public class ConvertActivity extends Activity {
 
+    private float precoGasolina;
+    private float precoAlcool;
     private FirebaseAnalytics mFirebaseAnalytics;
     private AdView mAdView;
+
+    private NumberFormat format = new DecimalFormat("0.00");
 
     @ViewById
     AdView adView;
@@ -39,7 +50,7 @@ public class ConvertActivity extends Activity {
     @ViewById
     Button convert_button;
     @ViewById
-    TextView convert_text_porcentagem;
+    TextView convert_alertdialog_porque;
     @ViewById
     TextView convert_text_after_button;
 
@@ -81,10 +92,37 @@ public class ConvertActivity extends Activity {
         } else if(verificaValorNegativo() || verificaValorInvalido()){
             Toast.makeText(this, R.string.valores_invalidos, Toast.LENGTH_SHORT).show();
         } else {
-            float precoGasolina = Float.parseFloat(convert_value_gasolina.getText().toString());
-            float precoAlcool = Float.parseFloat(convert_value_alcool.getText().toString());
-            CalculadorUtil.realizaCalculo(precoGasolina, precoAlcool, convert_text_after_button, convert_text_porcentagem);
+            precoGasolina = Float.parseFloat(convert_value_gasolina.getText().toString());
+            precoAlcool = Float.parseFloat(convert_value_alcool.getText().toString());
+            CalculadorUtil.realizaCalculo(precoGasolina, precoAlcool, convert_text_after_button);
+            convert_alertdialog_porque.setVisibility(View.VISIBLE);
         }
+    }
+
+    @Click
+    public void convert_alertdialog_porque(){
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(android.R.drawable.ic_menu_help);
+        builder.setTitle("Porque?");
+        builder.setMessage("De acordo com lei 13.033/14 fixou em 27,5% o percentual de álcool na gasolina." +
+                "\nEntão para compensar o preço de 72,5% do litro da gasolina tem que ser inferior ao preço do litro do álcool!" +
+                "\nSeus cálculos:\n" +
+                "Gasolina: R$ "+ convert_value_gasolina.getText().toString() +
+                "\nÁlcool: R$ "+ convert_value_alcool.getText().toString() +
+                "\n72,5% de 1L de gasolina: R$ "+ 2.259);
+        builder.setPositiveButton(OK, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
+    }
+
+    private float ajustaPorcentagem() {
+        float precoGasolinaSetentaPorcento = precoGasolina * 0.725f;
+        return Float.parseFloat(format.format(precoGasolinaSetentaPorcento));
     }
 
     private boolean verificaValorInvalido() {

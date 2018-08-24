@@ -7,11 +7,10 @@ import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLI
 
 public class CalculadorUtil {
 
-    public static void realizaCalculo(float precoGasolina, float precoAlcool, TextView textoConversao, TextView textoPorcentagem) {
+    public static void realizaCalculo(float precoGasolina, float precoAlcool, TextView textoConversao) {
         float porcentagemFloat = precoAlcool / precoGasolina;
         porcentagemFloat *= 100;
         int porcentagem = (int) porcentagemFloat;
-        textoPorcentagem.setText(String.valueOf(porcentagem) + " %");
         if(precoGasolina * 0.7 > precoAlcool){
             montaTexto(textoConversao, ALCOOL);
         } else {
