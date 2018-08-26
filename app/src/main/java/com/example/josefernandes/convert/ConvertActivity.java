@@ -120,8 +120,8 @@ public class ConvertActivity extends Activity {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(android.R.drawable.ic_menu_help);
         builder.setTitle("Porque?");
-        builder.setMessage("De acordo com lei 13.033/14 fixou em 27,5% o percentual de álcool na gasolina." +
-                "\nEntão para compensar o preço de 72,5% do litro da gasolina tem que ser inferior ao preço do litro do álcool!" +
+        builder.setMessage("De acordo com lei 13.033/14, fixou-se em 27,5% o percentual de álcool na gasolina." +
+                "\nEntão para compensar, o preço de 72,5% do litro da gasolina tem que ser inferior ao preço do litro do álcool." +
                 "\nSeus cálculos:\n" +
                 "Gasolina: R$ "+ formataPrecoGasolina(convert_value_gasolina.getText().toString()) +
                 "\nÁlcool: R$ "+ formataPrecoAlcool(convert_value_alcool.getText().toString()) +
