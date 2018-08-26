@@ -3,6 +3,8 @@ package com.example.josefernandes.convert;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -50,6 +52,8 @@ public class ConvertActivity extends Activity {
     TextView convert_alertdialog_porque;
     @ViewById
     TextView convert_text_after_button;
+    @ViewById
+    TextView convert_text_versao_autor;
 
     @Override
     protected void onStart() {
@@ -57,6 +61,21 @@ public class ConvertActivity extends Activity {
         inserirTextoCombustiveis();
         inicializarAnalytics();
         inicializarAnuncios();
+        mostraVersaoEAutor();
+    }
+
+    private void mostraVersaoEAutor() {
+        PackageInfo pInfo = null;
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        String version = pInfo.versionName;
+        String autor = getString(R.string.autor);
+        //int verCode = pInfo.versionCode;
+        String montaTexto = "v"+ version +" - "+ autor;
+        convert_text_versao_autor.setText(montaTexto);
     }
 
     private void inicializarAnuncios() {

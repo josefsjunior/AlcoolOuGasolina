@@ -1,8 +1,9 @@
 <resources>
-    <string name="app_name">Pense Melhor</string>
+    <string name="app_name">Abasteça Melhor</string>
     <string name="banner_ad_unit_id">ca-app-pub-8478899305646131/8388328312</string>
     <string name="banner_ad_unit_id_test">ca-app-pub-3940256099942544/6300978111</string>
-    <string name="versao_app">v1.0 - by José Fernandes</string>
+    <string name="versao_app">1.0</string>
+    <string name="autor">José Fernandes</string>
     <string name="abasteca_gasolina">Abasteça com Gasolina</string>
     <string name="abasteca_alcool">Abasteça com Álcool</string>
     <string name="preencha_todos_os_campos">Preencha todos os campos</string>
