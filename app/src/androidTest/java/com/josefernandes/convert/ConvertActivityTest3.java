@@ -1,4 +1,4 @@
-package com.example.josefernandes.convert;
+package com.josefernandes.convert;
 
 
 import android.support.test.espresso.ViewInteraction;
@@ -28,13 +28,13 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class convertActivityTest {
+public class ConvertActivityTest3 {
 
     @Rule
     public ActivityTestRule<ConvertActivity_> mActivityTestRule = new ActivityTestRule<>(ConvertActivity_.class);
 
     @Test
-    public void convertActivity_Test() {
+    public void convertActivityTest3() {
         ViewInteraction editText = onView(
                 allOf(withId(R.id.convert_value_gasolina),
                         childAtPosition(
@@ -53,7 +53,7 @@ public class convertActivityTest {
                                         0),
                                 2),
                         isDisplayed()));
-        editText2.perform(replaceText("3.19"), closeSoftKeyboard());
+        editText2.perform(replaceText("3.599"), closeSoftKeyboard());
 
         ViewInteraction editText3 = onView(
                 allOf(withId(R.id.convert_value_alcool),
@@ -63,7 +63,7 @@ public class convertActivityTest {
                                         0),
                                 3),
                         isDisplayed()));
-        editText3.perform(replaceText("1.99"), closeSoftKeyboard());
+        editText3.perform(replaceText("2.699"), closeSoftKeyboard());
 
         ViewInteraction button = onView(
                 allOf(withId(R.id.convert_button), withText("OK"),
@@ -76,14 +76,14 @@ public class convertActivityTest {
         button.perform(click());
 
         ViewInteraction textView = onView(
-                allOf(withId(R.id.convert_text_after_button), withText("Abasteça com Álcool"),
+                allOf(withId(R.id.convert_text_after_button), withText("Abasteça com Gasolina"),
                         childAtPosition(
                                 childAtPosition(
                                         withId(android.R.id.content),
                                         0),
                                 5),
                         isDisplayed()));
-        textView.check(matches(withText("Abasteça com Álcool")));
+        textView.check(matches(withText("Abasteça com Gasolina")));
 
     }
 

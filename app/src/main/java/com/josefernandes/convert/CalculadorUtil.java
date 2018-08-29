@@ -1,9 +1,9 @@
-package com.example.josefernandes.convert;
+package com.josefernandes.convert;
 
 import android.widget.TextView;
 
-import static com.example.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
-import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
+import static com.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
+import static com.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
 
 public class CalculadorUtil {
 

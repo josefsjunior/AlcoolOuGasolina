@@ -1,4 +1,4 @@
-package com.example.josefernandes.convert;
+package com.josefernandes.convert;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

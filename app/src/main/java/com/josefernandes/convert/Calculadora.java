@@ -1,4 +1,4 @@
-package com.example.josefernandes.convert;
+package com.josefernandes.convert;
 
 public class Calculadora {
     private float gasolina;

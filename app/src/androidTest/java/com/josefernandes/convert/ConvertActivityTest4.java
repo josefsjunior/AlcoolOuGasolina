@@ -1,4 +1,4 @@
-package com.example.josefernandes.convert;
+package com.josefernandes.convert;
 
 
 import android.support.test.rule.ActivityTestRule;

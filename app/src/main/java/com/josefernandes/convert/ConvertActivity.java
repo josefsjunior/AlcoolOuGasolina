@@ -1,4 +1,4 @@
-package com.example.josefernandes.convert;
+package com.josefernandes.convert;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -24,9 +24,9 @@ import org.androidannotations.annotations.ViewById;
 
 import java.text.DecimalFormat;
 
-import static com.example.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
-import static com.example.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
-import static com.example.josefernandes.convert.ConvertActivityConstantes.ZERO;
+import static com.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
+import static com.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
+import static com.josefernandes.convert.ConvertActivityConstantes.ZERO;
 
 @EActivity(R.layout.activity_convert)
 public class ConvertActivity extends Activity {
