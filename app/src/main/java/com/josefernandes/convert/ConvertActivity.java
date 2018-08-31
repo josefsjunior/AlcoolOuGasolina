@@ -24,7 +24,7 @@ import org.androidannotations.annotations.ViewById;
 
 import java.text.DecimalFormat;
 
-import static com.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
+import static com.josefernandes.convert.ConvertActivityConstantes.ETANOL;
 import static com.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
 import static com.josefernandes.convert.ConvertActivityConstantes.ZERO;
 
@@ -72,9 +72,10 @@ public class ConvertActivity extends Activity {
             e.printStackTrace();
         }
         String version = pInfo.versionName;
-        String autor = getString(R.string.autor);
         //int verCode = pInfo.versionCode;
-        String montaTexto = "v"+ version +" - "+ autor;
+        String autor = getString(R.string.autor);
+
+        String montaTexto = "v" + version + " - " + autor;
         convert_text_versao_autor.setText(montaTexto);
     }
 
@@ -89,7 +90,7 @@ public class ConvertActivity extends Activity {
     }
 
     private void hideSoftKeyboard() {
-        if(getCurrentFocus()!=null) {
+        if (getCurrentFocus() != null) {
             InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
             inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
         }
@@ -97,15 +98,15 @@ public class ConvertActivity extends Activity {
 
     private void inserirTextoCombustiveis() {
         convert_gasolina.setText(GASOLINA);
-        convert_alcool.setText(ALCOOL);
+        convert_alcool.setText(ETANOL);
     }
 
     @Click
-    public void convert_button(){
+    public void convert_button() {
         hideSoftKeyboard();
-        if( verificaValorEmBranco() ){
+        if (verificaValorEmBranco()) {
             Toast.makeText(this, R.string.preencha_todos_os_campos, Toast.LENGTH_SHORT).show();
-        } else if(verificaValorNegativo() || verificaValorInvalido()){
+        } else if (verificaValorNegativo() || verificaValorInvalido()) {
             Toast.makeText(this, R.string.valores_invalidos, Toast.LENGTH_SHORT).show();
         } else {
             precoGasolina = Float.parseFloat(convert_value_gasolina.getText().toString());
@@ -116,16 +117,16 @@ public class ConvertActivity extends Activity {
     }
 
     @Click
-    public void convert_alertdialog_porque(){
+    public void convert_alertdialog_porque() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setIcon(android.R.drawable.ic_menu_help);
         builder.setTitle("Porque?");
-        builder.setMessage("De acordo com lei 13.033/14, fixou-se em 27,5% o percentual de álcool na gasolina." +
-                "\nEntão para compensar, o preço de 72,5% do litro da gasolina tem que ser inferior ao preço do litro do álcool." +
+        builder.setMessage("De acordo com lei 13.033/14, fixou-se em 27,5% o percentual de etanol na gasolina." +
+                "\nEntão para compensar, o preço de 72,5% do litro da gasolina tem que ser inferior ao preço do litro do etanol." +
                 "\nSeus cálculos:\n" +
-                "Gasolina: R$ "+ formataPrecoGasolina(convert_value_gasolina.getText().toString()) +
-                "\nÁlcool: R$ "+ formataPrecoAlcool(convert_value_alcool.getText().toString()) +
-                "\n72,5% de 1L de gasolina: R$ "+ ajustaPorcentagem());
+                "Gasolina: R$ " + formataPrecoGasolina(convert_value_gasolina.getText().toString()) +
+                "\nEtanol: R$ " + formataPrecoAlcool(convert_value_alcool.getText().toString()) +
+                "\n72,5% de 1L de gasolina: R$ " + ajustaPorcentagem());
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
