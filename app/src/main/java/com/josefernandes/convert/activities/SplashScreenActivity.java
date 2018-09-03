@@ -1,9 +1,11 @@
-package com.josefernandes.convert;
+package com.josefernandes.convert.activities;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+
+import com.josefernandes.convert.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
     @Override
