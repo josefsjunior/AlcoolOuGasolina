@@ -1,10 +1,10 @@
-package com.josefernandes.convert;
+package com.josefernandes.convert.utils;
 
 import android.widget.TextView;
 
-import static com.josefernandes.convert.ConvertActivityConstantes.ALCOOL;
-import static com.josefernandes.convert.ConvertActivityConstantes.ETANOL;
-import static com.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
+import static com.josefernandes.convert.activities.ConvertActivityConstantes.ALCOOL;
+import static com.josefernandes.convert.activities.ConvertActivityConstantes.ETANOL;
+import static com.josefernandes.convert.activities.ConvertActivityConstantes.GASOLINA;
 
 public class CalculadorUtil {
 

@@ -1,4 +1,4 @@
-package com.josefernandes.convert;
+package com.josefernandes.convert.activities;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -17,6 +17,8 @@ import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
+import com.josefernandes.convert.utils.CalculadorUtil;
+import com.josefernandes.convert.R;
 
 import org.androidannotations.annotations.Click;
 import org.androidannotations.annotations.EActivity;
@@ -24,9 +26,9 @@ import org.androidannotations.annotations.ViewById;
 
 import java.text.DecimalFormat;
 
-import static com.josefernandes.convert.ConvertActivityConstantes.ETANOL;
-import static com.josefernandes.convert.ConvertActivityConstantes.GASOLINA;
-import static com.josefernandes.convert.ConvertActivityConstantes.ZERO;
+import static com.josefernandes.convert.activities.ConvertActivityConstantes.ETANOL;
+import static com.josefernandes.convert.activities.ConvertActivityConstantes.GASOLINA;
+import static com.josefernandes.convert.activities.ConvertActivityConstantes.ZERO;
 
 @EActivity(R.layout.activity_convert)
 public class ConvertActivity extends Activity {

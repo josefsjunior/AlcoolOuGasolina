@@ -3,9 +3,20 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/backgroundButtonTest</item>
+        <item name="colorPrimary">@color/backgroundButton</item>
         <item name="colorPrimaryDark">@color/background</item>
         <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="StyledTilEditTextTheme">
+        <item name="colorControlNormal">#FFFFFF</item> // Cor padrão da linha
+        <item name="colorControlActivated">#FFFFFF</item> // Cor linha e texto quando recebe foco
+    </style>
+
+    <style name="StyledTilEditText">
+        <item name="android:theme">@style/StyledTilEditTextTheme</item>
+        <item name="android:paddingTop">1dp</item>
+        <item name="android:textColorHint">#FFFFFF</item> // Cor texto(hint) sem foco
     </style>
 
 </resources>

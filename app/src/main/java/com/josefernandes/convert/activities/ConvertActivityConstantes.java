@@ -1,4 +1,4 @@
-package com.josefernandes.convert;
+package com.josefernandes.convert.activities;
 
 public interface ConvertActivityConstantes {
     String ALCOOL = "Álcool";

@@ -3,9 +3,8 @@
     <color name="colorPrimary">#D3D294</color>
     <color name="colorPrimaryDark">#D3D294</color>
     <color name="colorAccent">#008000</color>
-    <color name="background">#E9E6B9</color>
-    <color name="backgroundTest">#00CED1</color>
-    <color name="backgroundButtonTest">#008B8B</color>
+    <color name="background">#00CED1</color>
+    <color name="backgroundButton">#008B8B</color>
     <color name="textTest">#000000</color>
-    <color name="verde">#008000</color>
+    <color name="white">#FFFFFF</color>
 </resources>
