@@ -63,19 +63,19 @@ public class ConvertActivity extends Activity {
         inserirTextoCombustiveis();
         inicializarAnalytics();
         inicializarAnuncios();
-        mostraVersaoEAutor();
+        mostraVersao();
     }
 
-    private void mostraVersaoEAutor() {
+    private void mostraVersao() {
         PackageInfo pInfo = null;
         try {
             pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
 
             String version = pInfo.versionName;
             //int verCode = pInfo.versionCode;
-            String autor = getString(R.string.autor);
+            //String autor = getString(R.string.autor);
 
-            String montaTexto = "v" + version + " - " + autor;
+            String montaTexto = "v" + version;
             convert_text_versao_autor.setText(montaTexto);
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
