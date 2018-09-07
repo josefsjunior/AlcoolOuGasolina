@@ -23,7 +23,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void mostrarTelaPrincipal() {
         Intent intent = new Intent(SplashScreenActivity.this,
-                ConvertActivity_.class);
+                LoginActivity.class);
         startActivity(intent);
         finish();
     }
