@@ -1,14 +1,14 @@
 package com.josefernandes.convert.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -31,7 +31,7 @@ import static com.josefernandes.convert.activities.ConvertActivityConstantes.ETA
 import static com.josefernandes.convert.activities.ConvertActivityConstantes.GASOLINA;
 import static com.josefernandes.convert.activities.ConvertActivityConstantes.ZERO;
 
-public class ConvertActivity extends Activity {
+public class ConvertActivity extends AppCompatActivity {
 
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseAuth mAuth;
@@ -46,13 +46,13 @@ public class ConvertActivity extends Activity {
     private Button btnConverter;
     private TextView txtPorque;
     private TextView txtConverter;
-    private TextView txtVersao;
-    private ImageView btnSair;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convert);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         mAuth = FirebaseAuth.getInstance();
         Log.i("EMAIL", mAuth.getCurrentUser().getEmail());
@@ -69,7 +69,6 @@ public class ConvertActivity extends Activity {
         inserirTextoCombustiveis();
         inicializarAnalytics();
         inicializarAnuncios();
-        mostraVersao();
 
         btnConverter.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,15 +83,22 @@ public class ConvertActivity extends Activity {
                 mostraCaixaDeDialogo();
             }
         });
+    }
 
-        btnSair.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mAuth.getInstance().signOut();
-                startActivity(new Intent(ConvertActivity.this, LoginActivity.class));
-            }
-        });
+    private void sairDoApp() {
+        mAuth.getInstance().signOut();
+        startActivity(new Intent(ConvertActivity.this, LoginActivity.class));
+    }
 
+    private void inicializarComponentes() {
+        adView = findViewById(R.id.adView);
+        txtGasolina = findViewById(R.id.convert_gasolina);
+        txtEtanol = findViewById(R.id.convert_alcool);
+        edtPrecoGasolina = findViewById(R.id.convert_value_gasolina);
+        edtPrecoEtanol = findViewById(R.id.convert_value_alcool);
+        btnConverter = findViewById(R.id.convert_button);
+        txtPorque = findViewById(R.id.convert_alertdialog_porque);
+        txtConverter = findViewById(R.id.convert_text_after_button);
     }
 
     private void motraTextoConversao() {
@@ -130,17 +136,25 @@ public class ConvertActivity extends Activity {
         builder.show();
     }
 
-    private void inicializarComponentes() {
-        adView = findViewById(R.id.adView);
-        txtGasolina = findViewById(R.id.convert_gasolina);
-        txtEtanol = findViewById(R.id.convert_alcool);
-        edtPrecoGasolina = findViewById(R.id.convert_value_gasolina);
-        edtPrecoEtanol = findViewById(R.id.convert_value_alcool);
-        btnConverter = findViewById(R.id.convert_button);
-        txtPorque = findViewById(R.id.convert_alertdialog_porque);
-        txtConverter = findViewById(R.id.convert_text_after_button);
-        txtVersao = findViewById(R.id.convert_text_versao_autor);
-        btnSair = findViewById(R.id.convert_btn_sair);
+    private void mostraSairDoApp() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(ConvertActivity.this);
+        builder.setIcon(android.R.drawable.ic_menu_help);
+        builder.setTitle("SAIR");
+        String mensagem = "Tem certeza que deseja sair do app?";
+        builder.setMessage(mensagem);
+        builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                sairDoApp();
+            }
+        }).setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
     }
 
     @Override
@@ -149,20 +163,27 @@ public class ConvertActivity extends Activity {
         mAuth.addAuthStateListener(mAuthListener);
     }
 
-    private void mostraVersao() {
-        PackageInfo pInfo = null;
-        try {
-            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_principal, menu);
+        return true;
+    }
 
-            String version = pInfo.versionName;
-            //int verCode = pInfo.versionCode;
-            //String autor = getString(R.string.autor);
-
-            String montaTexto = "v" + version;
-            txtVersao.setText(montaTexto);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.menu_carro:
+                startActivity(new Intent(ConvertActivity.this, CarroActivity.class));
+                break;
+            case R.id.menu_posto:
+                Toast.makeText(this, "Clicou no botão conversão", Toast.LENGTH_SHORT).show();
+                //vaiParaTelaDePosto
+                break;
+            case R.id.menu_sair:
+                mostraSairDoApp();
+                break;
         }
+        return super.onOptionsItemSelected(item);
     }
 
     private void inicializarAnuncios() {
@@ -218,5 +239,4 @@ public class ConvertActivity extends Activity {
     private boolean verificaValorEmBranco() {
         return edtPrecoGasolina.getText().toString().isEmpty() || edtPrecoEtanol.getText().toString().isEmpty();
     }
-
 }

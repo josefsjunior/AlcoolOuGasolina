@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_carro"
+        android:icon="@drawable/ic_directions_car"
+        android:title="Carro"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_posto"
+        android:icon="@drawable/ic_ev_station"
+        android:title="Combustível"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/menu_sair"
+        android:icon="@drawable/ic_settings_power"
+        android:title="Sair"
+        app:showAsAction="always"/>
+
+</menu>

@@ -4,10 +4,11 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,7 +25,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.josefernandes.convert.R;
 
@@ -38,8 +38,8 @@ public class LoginActivity extends AppCompatActivity {
     private static final int RC_SIGN_IN = 200;
     //private static final String TAG = "LOGIN_ACTIVITY";
     private TextView txtPrivacidade;
+    private TextView txtVersao;
     private ProgressDialog dialog;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,13 +51,14 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() != null){
-
                     startActivity(new Intent(LoginActivity.this, ConvertActivity.class));
+                    finish();
                 }
             }
         };
 
-        btnLogin = findViewById(R.id.sign_in_button);
+        inicializarComponentes();
+        mostraVersao();
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -81,7 +82,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        txtPrivacidade = findViewById(R.id.txtPrivacidade);
         txtPrivacidade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,15 +90,17 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    private void inicializarComponentes(){
+        txtPrivacidade = findViewById(R.id.login_txt_privacidade);
+        btnLogin = findViewById(R.id.sign_in_button);
+        txtVersao = findViewById(R.id.login_txt_versao_app);
+    }
+
     private void mostraPoliticaDePrivacidade() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-        builder.setIcon(android.R.drawable.ic_menu_help);
-        builder.setTitle(R.string.porque);
-        String mensagem = "POLÍTICA DE PRIVACIDADE\n" +
-                "\n" +
-                "----\n" +
-                "\n" +
-                "SEÇÃO 1 - O QUE FAZEMOS COM AS SUAS INFORMAÇÕES?\n" +
+        builder.setIcon(android.R.drawable.ic_menu_info_details);
+        builder.setTitle("Política de Privacidade");
+        String mensagem = "SEÇÃO 1 - O QUE FAZEMOS COM AS SUAS INFORMAÇÕES?\n" +
                 "\n" +
                 "Quando você compra alguma coisa na nossa loja, como parte do processo de compra e venda, coletamos as informações pessoais que você nos fornece, tais como seu nome, endereço e e-mail.\n" +
                 "\n" +
@@ -238,5 +240,21 @@ public class LoginActivity extends AppCompatActivity {
         dialog = new ProgressDialog(LoginActivity.this);
         dialog.setMessage("Entrando...");
         dialog.show();
+    }
+
+    private void mostraVersao() {
+        PackageInfo pInfo = null;
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+
+            String version = pInfo.versionName;
+            //int verCode = pInfo.versionCode;
+            //String autor = getString(R.string.autor);
+
+            String montaTexto = "v" + version;
+            txtVersao.setText(montaTexto);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

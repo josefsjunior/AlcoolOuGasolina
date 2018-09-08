@@ -27,13 +27,25 @@
         app:layout_constraintStart_toStartOf="@+id/login_imageView" />
 
     <TextView
-        android:id="@+id/txtPrivacidade"
+        android:id="@+id/login_txt_privacidade"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginTop="8dp"
         android:text="Política de Privacidade"
+        android:textColor="#FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/login_txt_versao_app"
+        android:layout_width="wrap_content"
+        android:layout_height="14dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:text="v1.0" />
 
 </android.support.constraint.ConstraintLayout>
