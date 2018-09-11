@@ -7,4 +7,151 @@
     android:background="@color/background"
     tools:context=".activities.FormularioCarroActivity">
 
+    <TextView
+        android:id="@+id/formulario_carro_textview_nome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="Nome"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/formulario_carro_edittext_nome"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        style="@style/StyledTilEditText"
+        android:hint="Nome ou apelido do carro"
+        android:inputType="textPersonName"
+        android:maxLength="15"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/formulario_carro_textview_nome"
+        app:layout_constraintTop_toBottomOf="@+id/formulario_carro_textview_nome" />
+
+    <TextView
+        android:id="@+id/formulario_carro_textview_consumo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginTop="16dp"
+        android:text="Consumo"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/formulario_carro_textview_nome"
+        app:layout_constraintTop_toBottomOf="@+id/formulario_carro_edittext_nome" />
+
+    <EditText
+        android:id="@+id/formulario_carro_edittext_gasolina_cidade"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        style="@style/StyledTilEditText"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textAlignment="viewStart"
+        android:maxLength="3"
+        app:layout_constraintStart_toStartOf="@+id/formulario_carro_textview_gasolina"
+        app:layout_constraintTop_toBottomOf="@+id/formulario_carro_textview_gasolina" />
+
+    <TextView
+        android:id="@+id/formulario_carro_textview_gasolina"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Gasolina"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/formulario_carro_textview_nome"
+        app:layout_constraintTop_toBottomOf="@+id/formulario_carro_textview_consumo" />
+
+    <ImageView
+        android:id="@+id/formulario_carro_imageview_cidade"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/formulario_carro_edittext_gasolina_cidade"
+        app:layout_constraintEnd_toStartOf="@+id/formulario_carro_edittext_etanol_cidade"
+        app:layout_constraintStart_toEndOf="@+id/formulario_carro_edittext_gasolina_cidade"
+        app:layout_constraintTop_toTopOf="@+id/formulario_carro_edittext_gasolina_cidade"
+        app:srcCompat="@drawable/ic_city" />
+
+    <TextView
+        android:id="@+id/formulario_carro_textview_etanol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="8dp"
+        android:text="Etanol"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/formulario_carro_textview_consumo"
+        app:layout_constraintTop_toBottomOf="@+id/formulario_carro_textview_consumo" />
+
+    <EditText
+        android:id="@+id/formulario_carro_edittext_etanol_cidade"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        style="@style/StyledTilEditText"
+        android:ems="10"
+        android:inputType="numberDecimal"
+        android:textAlignment="viewEnd"
+        android:maxLength="3"
+        app:layout_constraintEnd_toEndOf="@+id/formulario_carro_textview_etanol"
+        app:layout_constraintTop_toBottomOf="@+id/formulario_carro_textview_etanol" />
+
+    <EditText
+        android:id="@+id/formulario_carro_edittext_gasolina_estrada"
+        android:layout_width="120dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        style="@style/StyledTilEditText"
+        android:inputType="numberDecimal"
+        android:textAlignment="viewStart"
+        android:maxLength="3"
+        app:layout_constraintStart_toStartOf="@+id/formulario_carro_edittext_gasolina_cidade"
+        app:layout_constraintTop_toBottomOf="@+id/formulario_carro_edittext_gasolina_cidade" />
+
+    <EditText
+        android:id="@+id/formulario_carro_edittext_etanol_estrada"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        style="@style/StyledTilEditText"
+        android:inputType="numberDecimal"
+        android:textAlignment="viewEnd"
+        android:maxLength="3"
+        app:layout_constraintEnd_toEndOf="@+id/formulario_carro_edittext_etanol_cidade"
+        app:layout_constraintTop_toBottomOf="@+id/formulario_carro_edittext_etanol_cidade" />
+
+    <ImageView
+        android:id="@+id/formulario_carro_imageview_estrada"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/formulario_carro_edittext_gasolina_estrada"
+        app:layout_constraintEnd_toStartOf="@+id/formulario_carro_edittext_etanol_estrada"
+        app:layout_constraintStart_toEndOf="@+id/formulario_carro_edittext_gasolina_estrada"
+        app:layout_constraintTop_toTopOf="@+id/formulario_carro_edittext_gasolina_estrada"
+        app:srcCompat="@drawable/ic_urban" />
 </android.support.constraint.ConstraintLayout>

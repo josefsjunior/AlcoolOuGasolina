@@ -26,7 +26,9 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DatabaseReference;
 import com.josefernandes.convert.R;
+import com.josefernandes.convert.config.ConfiguracaoFirebase;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -34,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private GoogleApiClient mGoogleApiClient;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private DatabaseReference databaseReference;
 
     private static final int RC_SIGN_IN = 200;
     //private static final String TAG = "LOGIN_ACTIVITY";
@@ -51,6 +54,8 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() != null){
+                    databaseReference = ConfiguracaoFirebase.getFirebase();
+                    databaseReference.setValue(mAuth.getUid());
                     startActivity(new Intent(LoginActivity.this, ConvertActivity.class));
                     finish();
                 }

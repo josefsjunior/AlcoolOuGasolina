@@ -13,7 +13,7 @@
         app:showAsAction="always"/>
     <item
         android:id="@+id/menu_sair"
-        android:icon="@drawable/ic_settings_power"
+        android:icon="@drawable/ic_power_settings_new"
         android:title="Sair"
         app:showAsAction="always"/>
 

@@ -2,13 +2,17 @@ package com.josefernandes.convert.classes;
 
 public class Carro {
     private String apelido;
-    private double rendimentoGasolina;
-    private double rendimentoEtanol;
+    private double rendimentoGasolinaCidade;
+    private double rendimentoGasolinaEstrada;
+    private double rendimentoEtanolCidade;
+    private double rendimentoEtanolEstrada;
 
-    public Carro(String apelido, double rendimentoGasolina, double rendimentoEtanol) {
+    public Carro(String apelido, double rendimentoGasolinaCidade, double rendimentoGasolinaEstrada, double rendimentoEtanolCidade, double rendimentoEtanolEstrada) {
         this.apelido = apelido;
-        this.rendimentoGasolina = rendimentoGasolina;
-        this.rendimentoEtanol = rendimentoEtanol;
+        this.rendimentoGasolinaCidade = rendimentoGasolinaCidade;
+        this.rendimentoGasolinaEstrada = rendimentoGasolinaEstrada;
+        this.rendimentoEtanolCidade = rendimentoEtanolCidade;
+        this.rendimentoEtanolEstrada = rendimentoEtanolEstrada;
     }
 
     public String getApelido() {
@@ -19,19 +23,35 @@ public class Carro {
         this.apelido = apelido;
     }
 
-    public double getRendimentoGasolina() {
-        return rendimentoGasolina;
+    public double getRendimentoGasolinaCidade() {
+        return rendimentoGasolinaCidade;
     }
 
-    public void setRendimentoGasolina(double rendimentoGasolina) {
-        this.rendimentoGasolina = rendimentoGasolina;
+    public void setRendimentoGasolinaCidade(double rendimentoGasolinaCidade) {
+        this.rendimentoGasolinaCidade = rendimentoGasolinaCidade;
     }
 
-    public double getRendimentoEtanol() {
-        return rendimentoEtanol;
+    public double getRendimentoEtanolCidade() {
+        return rendimentoEtanolCidade;
     }
 
-    public void setRendimentoEtanol(double rendimentoEtanol) {
-        this.rendimentoEtanol = rendimentoEtanol;
+    public void setRendimentoEtanolCidade(double rendimentoEtanolCidade) {
+        this.rendimentoEtanolCidade = rendimentoEtanolCidade;
+    }
+
+    public double getRendimentoGasolinaEstrada() {
+        return rendimentoGasolinaEstrada;
+    }
+
+    public void setRendimentoGasolinaEstrada(double rendimentoGasolinaEstrada) {
+        this.rendimentoGasolinaEstrada = rendimentoGasolinaEstrada;
+    }
+
+    public double getRendimentoEtanolEstrada() {
+        return rendimentoEtanolEstrada;
+    }
+
+    public void setRendimentoEtanolEstrada(double rendimentoEtanolEstrada) {
+        this.rendimentoEtanolEstrada = rendimentoEtanolEstrada;
     }
 }
