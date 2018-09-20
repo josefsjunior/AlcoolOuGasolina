@@ -6,53 +6,129 @@
     android:layout_height="match_parent"
     android:background="@color/background">
 
-    <TextView
-        android:id="@+id/item_carro_apelido"
-        android:layout_width="wrap_content"
+    <android.support.v7.widget.CardView
+        android:id="@+id/item_carro_cardview"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Coroleta"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="9dp" />
+        android:layout_margin="8dp"
+        app:cardCornerRadius="10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
 
-    <TextView
-        android:id="@+id/item_carro_texto_cidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Cidade"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="51dp"
-        tools:layout_editor_absoluteY="36dp" />
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/item_carro_rendimento_gasolina_cidade"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Gasolina"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="113dp"
-        tools:layout_editor_absoluteY="72dp" />
+            <TextView
+                android:id="@+id/item_carro_apelido"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@sample/carros.json/carros/apelido" />
 
-    <TextView
-        android:id="@+id/item_carro_texto_estrada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Estrada"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="207dp"
-        tools:layout_editor_absoluteY="36dp" />
+            <TextView
+                android:id="@+id/item_carro_texto_cidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="60dp"
+                android:layout_marginTop="8dp"
+                android:text="Cidade"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/item_carro_apelido" />
 
-    <TextView
-        android:id="@+id/item_carro_rendimento_etanol_estrada"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Etanol"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="135dp"
-        tools:layout_editor_absoluteY="99dp" />
+            <TextView
+                android:id="@+id/item_carro_rendimento_gasolina_cidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="8dp"
+                android:text="Gasolina"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toStartOf="@+id/item_carro_texto_estrada"
+                app:layout_constraintStart_toEndOf="@+id/item_carro_texto_cidade"
+                app:layout_constraintTop_toBottomOf="@+id/item_carro_texto_cidade" />
+
+            <TextView
+                android:id="@+id/item_carro_texto_estrada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:text="Estrada"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="@+id/item_carro_apelido"
+                app:layout_constraintTop_toTopOf="@+id/item_carro_texto_cidade" />
+
+            <TextView
+                android:id="@+id/item_carro_rendimento_etanol_estrada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="5dp"
+                android:text="Etanol"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/item_carro_rendimento_gasolina_cidade"
+                app:layout_constraintStart_toStartOf="@+id/item_carro_rendimento_gasolina_cidade"
+                app:layout_constraintTop_toBottomOf="@+id/item_carro_rendimento_gasolina_cidade" />
+
+            <TextView
+                android:id="@+id/item_texto_gasolina_cidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/item_carro_rendimento_gasolina_cidade"
+                app:layout_constraintEnd_toEndOf="@+id/item_carro_texto_cidade"
+                app:layout_constraintStart_toStartOf="@+id/item_carro_texto_cidade"
+                app:layout_constraintTop_toTopOf="@+id/item_carro_rendimento_gasolina_cidade"
+                tools:text="@sample/carros.json/carros/gasolinaCidade" />
+
+            <TextView
+                android:id="@+id/item_carro_etanol_cidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@sample/carros.json/carros/etanolCidade"
+                app:layout_constraintBottom_toBottomOf="@+id/item_carro_rendimento_etanol_estrada"
+                app:layout_constraintStart_toStartOf="@+id/item_texto_gasolina_cidade"
+                app:layout_constraintTop_toTopOf="@+id/item_carro_rendimento_etanol_estrada" />
+
+            <TextView
+                android:id="@+id/item_carro_gasolina_estrada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                app:layout_constraintBottom_toBottomOf="@+id/item_carro_rendimento_gasolina_cidade"
+                app:layout_constraintEnd_toEndOf="@+id/item_carro_texto_estrada"
+                app:layout_constraintStart_toStartOf="@+id/item_carro_texto_estrada"
+                app:layout_constraintTop_toTopOf="@+id/item_carro_rendimento_gasolina_cidade"
+                tools:text="@sample/carros.json/carros/gasolinaEstrada" />
+
+            <TextView
+                android:id="@+id/item_carro_etanol_estrada"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="@sample/carros.json/carros/etanolEstrada"
+                app:layout_constraintBottom_toBottomOf="@+id/item_carro_rendimento_etanol_estrada"
+                app:layout_constraintEnd_toEndOf="@+id/item_carro_gasolina_estrada"
+                app:layout_constraintTop_toTopOf="@+id/item_carro_rendimento_etanol_estrada" />
+
+        </android.support.constraint.ConstraintLayout>
+    </android.support.v7.widget.CardView>
 </android.support.constraint.ConstraintLayout>

@@ -5,6 +5,6 @@
     <color name="colorAccent">#008000</color>
     <color name="background">#00CED1</color>
     <color name="backgroundButton">#008B8B</color>
-    <color name="textTest">#000000</color>
+    <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 </resources>

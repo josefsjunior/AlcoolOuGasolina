@@ -16,7 +16,7 @@ android {
         applicationId "com.josefernandes.convert"
         minSdkVersion 19
         targetSdkVersion 28
-        versionCode 17
+        versionCode 19
         versionName "1.8.2"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -40,6 +40,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth:15.0.0'
     implementation 'com.google.firebase:firebase-core:16.0.0'
     implementation 'com.google.firebase:firebase-database:15.0.0'
+    implementation 'com.google.firebase:firebase-messaging:17.0.0'
     annotationProcessor "org.androidannotations:androidannotations:$AAVersion"
     implementation "org.androidannotations:androidannotations-api:$AAVersion"
     testImplementation 'junit:junit:4.12'

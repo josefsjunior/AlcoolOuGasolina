@@ -5,27 +5,28 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.ValueEventListener;
 import com.josefernandes.convert.R;
+import com.josefernandes.convert.adapter.ListaCarrosAdapter;
 import com.josefernandes.convert.classes.Carro;
-import com.josefernandes.convert.config.ConfiguracaoFirebase;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarroActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
 
-    private List<Carro> carros = null;
+    private List<Carro> carros;
 
     private TextView txtGasolinaCidade;
+    private ListaCarrosAdapter adapter;
+    private ListView listViewCarros;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,17 @@ public class CarroActivity extends AppCompatActivity {
         setContentView(R.layout.activity_carro);
 
         setTitle("Carros");
+
+        listViewCarros = findViewById(R.id.carro_listview);
+
+        Carro carro = new Carro("Duster", 16.1, 15, 12, 11);
+        carros = new ArrayList<>();
+        carros.add(carro);
+
+        adapter = new ListaCarrosAdapter(this,  carros);
+        listViewCarros.setAdapter(adapter);
+
+
     }
 
     @Override

@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -172,6 +171,7 @@ public class ConvertActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
+            /**
             case R.id.menu_carro:
                 startActivity(new Intent(ConvertActivity.this, CarroActivity.class));
                 break;
@@ -179,6 +179,7 @@ public class ConvertActivity extends AppCompatActivity {
                 Toast.makeText(this, "Clicou no botão conversão", Toast.LENGTH_SHORT).show();
                 //vaiParaTelaDePosto
                 break;
+             */
             case R.id.menu_sair:
                 mostraSairDoApp();
                 break;
