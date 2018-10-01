@@ -14,11 +14,11 @@ import java.util.List;
 
 public class ListaCarrosAdapter extends BaseAdapter {
 
-    private final List<Carro> carros;
-    private final Context context;
+    private List<Carro> carros;
+    private LayoutInflater inflater;
 
     public ListaCarrosAdapter(Context context, List<Carro> carros) {
-        this.context = context;
+        inflater = LayoutInflater.from(context);
         this.carros = carros;
     }
 
@@ -39,19 +39,25 @@ public class ListaCarrosAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View viewCriada = LayoutInflater.from(context).inflate(R.layout.activity_carro, viewGroup, false);
+        //View viewCriada = LayoutInflater.from(context).inflate(R.layout.layout_item_carro, viewGroup, false);
+        View viewCriada = inflater.inflate( R.layout.layout_item_carro, viewGroup, false );
+
+        Carro carro = carros.get( i );
 
         TextView txtNome = viewCriada.findViewById(R.id.item_carro_apelido);
-        TextView txtGasolinaCidade = viewCriada.findViewById(R.id.item_texto_gasolina_cidade);
-        TextView txtGasolinaEstrada = viewCriada.findViewById(R.id.item_carro_gasolina_estrada);
-        TextView txtEtanolCidade = viewCriada.findViewById(R.id.item_carro_etanol_cidade);
-        TextView txtEtanolEstrada = viewCriada.findViewById(R.id.item_carro_etanol_estrada);
+        txtNome.setText(carro.getApelido());
 
-        //txtNome.setText("Corola");
-        //txtGasolinaCidade.setText("9");
-        //txtGasolinaEstrada.setText("9");
-        //txtEtanolCidade.setText("9");
-        //txtEtanolEstrada.setText("9");
+        TextView txtGasolinaCidade = viewCriada.findViewById(R.id.item_texto_gasolina_cidade);
+        txtGasolinaCidade.setText(String.valueOf(carro.getRendimentoGasolinaCidade()));
+
+        TextView txtGasolinaEstrada = viewCriada.findViewById(R.id.item_carro_gasolina_estrada);
+        txtGasolinaEstrada.setText(String.valueOf(carro.getRendimentoGasolinaEstrada()));
+
+        TextView txtEtanolCidade = viewCriada.findViewById(R.id.item_carro_etanol_cidade);
+        txtEtanolCidade.setText(String.valueOf(carro.getRendimentoEtanolCidade()));
+
+        TextView txtEtanolEstrada = viewCriada.findViewById(R.id.item_carro_etanol_estrada);
+        txtEtanolEstrada.setText(String.valueOf(carro.getRendimentoEtanolEstrada()));
 
         return viewCriada;
     }

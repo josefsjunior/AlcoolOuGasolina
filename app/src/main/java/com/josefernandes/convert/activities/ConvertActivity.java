@@ -171,10 +171,10 @@ public class ConvertActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            /**
             case R.id.menu_carro:
                 startActivity(new Intent(ConvertActivity.this, CarroActivity.class));
                 break;
+            /**
             case R.id.menu_posto:
                 Toast.makeText(this, "Clicou no botão conversão", Toast.LENGTH_SHORT).show();
                 //vaiParaTelaDePosto

@@ -1,6 +1,8 @@
 package com.josefernandes.convert.classes;
 
-public class Carro {
+import java.util.Comparator;
+
+public class Carro implements Comparator{
     private String apelido;
     private double rendimentoGasolinaCidade;
     private double rendimentoGasolinaEstrada;
@@ -53,5 +55,13 @@ public class Carro {
 
     public void setRendimentoEtanolEstrada(double rendimentoEtanolEstrada) {
         this.rendimentoEtanolEstrada = rendimentoEtanolEstrada;
+    }
+
+    @Override
+    public int compare(Object obj, Object other) {
+        Carro car = (Carro) obj;
+        Carro otherCar = (Carro) other;
+
+        return car.getApelido().compareTo(otherCar.getApelido());
     }
 }
