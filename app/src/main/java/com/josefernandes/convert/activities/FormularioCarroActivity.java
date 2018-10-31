@@ -13,6 +13,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.josefernandes.convert.R;
 import com.josefernandes.convert.classes.Carro;
 import com.josefernandes.convert.config.ConfiguracaoFirebase;
+import com.josefernandes.convert.repository.CarroRepository;
 
 public class FormularioCarroActivity extends AppCompatActivity {
 
@@ -24,6 +25,7 @@ public class FormularioCarroActivity extends AppCompatActivity {
 
     private DatabaseReference referenciaDatabase;
     private Carro carro;
+    private CarroRepository carroRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +60,8 @@ public class FormularioCarroActivity extends AppCompatActivity {
                 } else {
                     referenciaDatabase = ConfiguracaoFirebase.getFirebase();
                     referenciaDatabase.child(FirebaseAuth.getInstance().getUid()).child("carros").setValue(carro);
-                    //referenciaDatabase.child(FirebaseAuth.getInstance().getUid()).child("apelido").setValue(edtNome.getText().toString());
-                    //referenciaDatabase.child(FirebaseAuth.getInstance().getUid()).child("gasolinaCidade").setValue(edtGasolinaCidade.getText().toString());
-                    //referenciaDatabase.child(FirebaseAuth.getInstance().getUid()).child("gasolinaEstrada").setValue(edtGasolinaEstrada.getText().toString());
-                    //referenciaDatabase.child(FirebaseAuth.getInstance().getUid()).child("etanolCidade").setValue(edtEtanolCidade.getText().toString());
-                    //referenciaDatabase.child(FirebaseAuth.getInstance().getUid()).child("etanolEstrada").setValue(edtEtanolEstrada.getText().toString());
+                    carroRepository = new CarroRepository();
+                    carroRepository.salvar(carro);
                     startActivity(new Intent(this, CarroActivity.class));
                     Toast.makeText(this, "Carro " + edtNome.getText().toString() + " adicionado", Toast.LENGTH_SHORT).show();
                     finish();

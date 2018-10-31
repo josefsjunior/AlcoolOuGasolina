@@ -21,10 +21,14 @@ import com.google.android.gms.ads.AdView;
 import com.google.android.gms.ads.MobileAds;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.josefernandes.convert.R;
+import com.josefernandes.convert.config.ConfiguracaoFirebase;
+import com.josefernandes.convert.utils.AlertDialogUtils;
 import com.josefernandes.convert.utils.CalculadorUtil;
-
-import java.text.DecimalFormat;
+import com.josefernandes.convert.utils.FormatadorUtils;
+import com.josefernandes.convert.utils.PorcentagemUtil;
 
 import static com.josefernandes.convert.activities.ConvertActivityConstantes.ETANOL;
 import static com.josefernandes.convert.activities.ConvertActivityConstantes.GASOLINA;
@@ -35,6 +39,7 @@ public class ConvertActivity extends AppCompatActivity {
     private FirebaseAnalytics mFirebaseAnalytics;
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private FirebaseDatabase database;
     private AdView mAdView;
 
     private AdView adView;
@@ -64,6 +69,8 @@ public class ConvertActivity extends AppCompatActivity {
             }
         };
 
+        DatabaseReference reference = ConfiguracaoFirebase.getFirebase();
+        reference.child("users").setValue(mAuth.getUid());
         inicializarComponentes();
         inserirTextoCombustiveis();
         inicializarAnalytics();
@@ -79,14 +86,20 @@ public class ConvertActivity extends AppCompatActivity {
         txtPorque.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mostraCaixaDeDialogo();
+                AlertDialogUtils.mostraCaixaDeDialogo(
+                        ConvertActivity.this,
+                        android.R.drawable.ic_menu_help,
+                        R.string.porque,
+                        "De acordo com lei 13.033/14, fixou-se em 27,5% o percentual de etanol na gasolina." +
+                                "\nEntão para compensar, o preço de 72,5% do litro da gasolina tem que ser inferior ao preço do litro do etanol." +
+                                "\nSeus cálculos:\n" +
+                                "Gasolina: R$ " + FormatadorUtils.formataPrecoGasolina(edtPrecoGasolina.getText().toString()) +
+                                "\nEtanol: R$ " + FormatadorUtils.formataPrecoAlcool(edtPrecoEtanol.getText().toString()) +
+                                "\n72,5% de 1L de gasolina: R$ " + PorcentagemUtil.ajustaPorcentagem(edtPrecoGasolina.getText().toString()),
+                        false
+                );
             }
         });
-    }
-
-    private void sairDoApp() {
-        mAuth.getInstance().signOut();
-        startActivity(new Intent(ConvertActivity.this, LoginActivity.class));
     }
 
     private void inicializarComponentes() {
@@ -98,6 +111,21 @@ public class ConvertActivity extends AppCompatActivity {
         btnConverter = findViewById(R.id.convert_button);
         txtPorque = findViewById(R.id.convert_alertdialog_porque);
         txtConverter = findViewById(R.id.convert_text_after_button);
+    }
+
+    private void inserirTextoCombustiveis() {
+        txtGasolina.setText(GASOLINA);
+        txtEtanol.setText(ETANOL);
+    }
+
+    private void inicializarAnalytics() {
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
+    }
+
+    private void inicializarAnuncios() {
+        MobileAds.initialize(this, getString(R.string.id_banner_admob));
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
     }
 
     private void motraTextoConversao() {
@@ -114,52 +142,29 @@ public class ConvertActivity extends AppCompatActivity {
         }
     }
 
-    private void mostraCaixaDeDialogo() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ConvertActivity.this);
-        builder.setIcon(android.R.drawable.ic_menu_help);
-        builder.setTitle(R.string.porque);
-        String mensagem = "De acordo com lei 13.033/14, fixou-se em 27,5% o percentual de etanol na gasolina." +
-                "\nEntão para compensar, o preço de 72,5% do litro da gasolina tem que ser inferior ao preço do litro do etanol." +
-                "\nSeus cálculos:\n" +
-                "Gasolina: R$ " + formataPrecoGasolina(edtPrecoGasolina.getText().toString()) +
-                "\nEtanol: R$ " + formataPrecoAlcool(edtPrecoEtanol.getText().toString()) +
-                "\n72,5% de 1L de gasolina: R$ " + ajustaPorcentagem();
-        builder.setMessage(mensagem);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
-        builder.setCancelable(false);
-        builder.create();
-        builder.show();
+    private boolean verificaValorEmBranco() {
+        return edtPrecoGasolina.getText().toString().isEmpty() || edtPrecoEtanol.getText().toString().isEmpty();
     }
 
-    private void mostraSairDoApp() {
-        final AlertDialog.Builder builder = new AlertDialog.Builder(ConvertActivity.this);
-        builder.setIcon(android.R.drawable.ic_menu_help);
-        builder.setTitle("SAIR");
-        String mensagem = "Tem certeza que deseja sair do app?";
-        builder.setMessage(mensagem);
-        builder.setPositiveButton("SIM", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                sairDoApp();
-            }
-        }).setNegativeButton("NÃO", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-            }
-        });
-        builder.setCancelable(false);
-        builder.create();
-        builder.show();
+    private boolean verificaValorNegativo() {
+        return Float.parseFloat(edtPrecoGasolina.getText().toString()) < ZERO || Float.parseFloat(edtPrecoEtanol.getText().toString()) < ZERO;
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(mAuthListener);
+    private boolean verificaValorInvalido() {
+        return edtPrecoGasolina.getText().toString().startsWith(".") || edtPrecoEtanol.getText().toString().startsWith(".");
+    }
+
+
+    private void hideSoftKeyboard() {
+        if (getCurrentFocus() != null) {
+            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+
+    private void sairDoApp() {
+        mAuth.getInstance().signOut();
+        startActivity(new Intent(ConvertActivity.this, LoginActivity.class));
     }
 
     @Override
@@ -187,57 +192,29 @@ public class ConvertActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void inicializarAnuncios() {
-        MobileAds.initialize(this, getString(R.string.id_banner_admob));
-        AdRequest adRequest = new AdRequest.Builder().build();
-        adView.loadAd(adRequest);
+    private void mostraSairDoApp() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(ConvertActivity.this);
+        builder.setIcon(android.R.drawable.ic_menu_help);
+        builder.setTitle(R.string.sair);
+        builder.setMessage(R.string.confirmacao_saida);
+        builder.setPositiveButton(R.string.sim, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                sairDoApp();
+            }
+        }).setNegativeButton(R.string.nao, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+            }
+        });
+        builder.setCancelable(false);
+        builder.create();
+        builder.show();
     }
 
-    private void inicializarAnalytics() {
-        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
-    }
-
-    private void hideSoftKeyboard() {
-        if (getCurrentFocus() != null) {
-            InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
-            inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
-        }
-    }
-
-    private void inserirTextoCombustiveis() {
-        txtGasolina.setText(GASOLINA);
-        txtEtanol.setText(ETANOL);
-    }
-
-    @NonNull
-    private String formataPrecoAlcool(String precoAlcool) {
-        return precoAlcool.replace(".", ",");
-    }
-
-    @NonNull
-    private String formataPrecoGasolina(String precoGasolina) {
-        return precoGasolina.replace(".", ",");
-    }
-
-    private String ajustaPorcentagem() {
-        DecimalFormat format = new DecimalFormat("#.000");
-        float precoGasolina = Float.parseFloat(edtPrecoGasolina.getText().toString());
-        double precoGasolinaSetentaPorcento = precoGasolina * 0.725;
-        String precoGasolinaSetentaPorcentoTexto = String.valueOf(precoGasolinaSetentaPorcento);
-        precoGasolinaSetentaPorcentoTexto.replace(",", ".");
-        precoGasolinaSetentaPorcento = Double.parseDouble(precoGasolinaSetentaPorcentoTexto);
-        return format.format(precoGasolinaSetentaPorcento);
-    }
-
-    private boolean verificaValorInvalido() {
-        return edtPrecoGasolina.getText().toString().startsWith(".") || edtPrecoEtanol.getText().toString().startsWith(".");
-    }
-
-    private boolean verificaValorNegativo() {
-        return Float.parseFloat(edtPrecoGasolina.getText().toString()) < ZERO || Float.parseFloat(edtPrecoEtanol.getText().toString()) < ZERO;
-    }
-
-    private boolean verificaValorEmBranco() {
-        return edtPrecoGasolina.getText().toString().isEmpty() || edtPrecoEtanol.getText().toString().isEmpty();
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
     }
 }

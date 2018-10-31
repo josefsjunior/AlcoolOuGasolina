@@ -3,21 +3,17 @@ package com.josefernandes.convert.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.josefernandes.convert.R;
-import com.josefernandes.convert.adapter.ListaCarrosAdapter;
+import com.josefernandes.convert.adapter.CarroAdapter;
 import com.josefernandes.convert.classes.Carro;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class CarroActivity extends AppCompatActivity {
@@ -40,7 +36,7 @@ public class CarroActivity extends AppCompatActivity {
 
         List<Carro> carros = gerarListaDeCarros();
 
-        ListaCarrosAdapter adapter = new ListaCarrosAdapter(this,  carros);
+        CarroAdapter adapter = new CarroAdapter(this,  carros);
         listViewCarros.setAdapter(adapter);
 
     }

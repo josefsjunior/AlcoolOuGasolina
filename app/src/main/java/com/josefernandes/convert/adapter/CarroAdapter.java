@@ -12,12 +12,12 @@ import com.josefernandes.convert.classes.Carro;
 
 import java.util.List;
 
-public class ListaCarrosAdapter extends BaseAdapter {
+public class CarroAdapter extends BaseAdapter {
 
     private List<Carro> carros;
     private LayoutInflater inflater;
 
-    public ListaCarrosAdapter(Context context, List<Carro> carros) {
+    public CarroAdapter(Context context, List<Carro> carros) {
         inflater = LayoutInflater.from(context);
         this.carros = carros;
     }
@@ -48,16 +48,16 @@ public class ListaCarrosAdapter extends BaseAdapter {
         txtNome.setText(carro.getApelido());
 
         TextView txtGasolinaCidade = viewCriada.findViewById(R.id.item_texto_gasolina_cidade);
-        txtGasolinaCidade.setText(String.valueOf(carro.getRendimentoGasolinaCidade()));
+        txtGasolinaCidade.setText(String.valueOf(carro.getGasolinaCidade()));
 
         TextView txtGasolinaEstrada = viewCriada.findViewById(R.id.item_carro_gasolina_estrada);
-        txtGasolinaEstrada.setText(String.valueOf(carro.getRendimentoGasolinaEstrada()));
+        txtGasolinaEstrada.setText(String.valueOf(carro.getGasolinaEstrada()));
 
         TextView txtEtanolCidade = viewCriada.findViewById(R.id.item_carro_etanol_cidade);
-        txtEtanolCidade.setText(String.valueOf(carro.getRendimentoEtanolCidade()));
+        txtEtanolCidade.setText(String.valueOf(carro.getEtanolCidade()));
 
         TextView txtEtanolEstrada = viewCriada.findViewById(R.id.item_carro_etanol_estrada);
-        txtEtanolEstrada.setText(String.valueOf(carro.getRendimentoEtanolEstrada()));
+        txtEtanolEstrada.setText(String.valueOf(carro.getEtanolEstrada()));
 
         return viewCriada;
     }

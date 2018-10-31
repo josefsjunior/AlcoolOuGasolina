@@ -4,17 +4,17 @@ import java.util.Comparator;
 
 public class Carro implements Comparator{
     private String apelido;
-    private double rendimentoGasolinaCidade;
-    private double rendimentoGasolinaEstrada;
-    private double rendimentoEtanolCidade;
-    private double rendimentoEtanolEstrada;
+    private double gasolinaCidade;
+    private double gasolinaEstrada;
+    private double etanolCidade;
+    private double etanolEstrada;
 
-    public Carro(String apelido, double rendimentoGasolinaCidade, double rendimentoGasolinaEstrada, double rendimentoEtanolCidade, double rendimentoEtanolEstrada) {
+    public Carro(String apelido, double gasolinaCidade, double gasolinaEstrada, double etanolCidade, double etanolEstrada) {
         this.apelido = apelido;
-        this.rendimentoGasolinaCidade = rendimentoGasolinaCidade;
-        this.rendimentoGasolinaEstrada = rendimentoGasolinaEstrada;
-        this.rendimentoEtanolCidade = rendimentoEtanolCidade;
-        this.rendimentoEtanolEstrada = rendimentoEtanolEstrada;
+        this.gasolinaCidade = gasolinaCidade;
+        this.gasolinaEstrada = gasolinaEstrada;
+        this.etanolCidade = etanolCidade;
+        this.etanolEstrada = etanolEstrada;
     }
 
     public String getApelido() {
@@ -25,36 +25,36 @@ public class Carro implements Comparator{
         this.apelido = apelido;
     }
 
-    public double getRendimentoGasolinaCidade() {
-        return rendimentoGasolinaCidade;
+    public double getGasolinaCidade() {
+        return gasolinaCidade;
     }
 
-    public void setRendimentoGasolinaCidade(double rendimentoGasolinaCidade) {
-        this.rendimentoGasolinaCidade = rendimentoGasolinaCidade;
+    public void setGasolinaCidade(double gasolinaCidade) {
+        this.gasolinaCidade = gasolinaCidade;
     }
 
-    public double getRendimentoEtanolCidade() {
-        return rendimentoEtanolCidade;
+    public double getEtanolCidade() {
+        return etanolCidade;
     }
 
-    public void setRendimentoEtanolCidade(double rendimentoEtanolCidade) {
-        this.rendimentoEtanolCidade = rendimentoEtanolCidade;
+    public void setEtanolCidade(double etanolCidade) {
+        this.etanolCidade = etanolCidade;
     }
 
-    public double getRendimentoGasolinaEstrada() {
-        return rendimentoGasolinaEstrada;
+    public double getGasolinaEstrada() {
+        return gasolinaEstrada;
     }
 
-    public void setRendimentoGasolinaEstrada(double rendimentoGasolinaEstrada) {
-        this.rendimentoGasolinaEstrada = rendimentoGasolinaEstrada;
+    public void setGasolinaEstrada(double gasolinaEstrada) {
+        this.gasolinaEstrada = gasolinaEstrada;
     }
 
-    public double getRendimentoEtanolEstrada() {
-        return rendimentoEtanolEstrada;
+    public double getEtanolEstrada() {
+        return etanolEstrada;
     }
 
-    public void setRendimentoEtanolEstrada(double rendimentoEtanolEstrada) {
-        this.rendimentoEtanolEstrada = rendimentoEtanolEstrada;
+    public void setEtanolEstrada(double etanolEstrada) {
+        this.etanolEstrada = etanolEstrada;
     }
 
     @Override

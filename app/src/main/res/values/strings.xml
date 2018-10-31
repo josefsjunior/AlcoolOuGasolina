@@ -14,4 +14,8 @@
     <string name="etanol">Etanol</string>
     <string name="gasolina">Gasolina</string>
     <string name="porque">Porque?</string>
+    <string name="confirmacao_saida">Tem certeza que deseja sair do app??</string>
+    <string name="sair">SAIR</string>
+    <string name="sim">SIM</string>
+    <string name="nao">NÃO</string>
 </resources>
