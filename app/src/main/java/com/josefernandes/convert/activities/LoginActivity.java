@@ -39,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
     private DatabaseReference databaseReference;
 
     private static final int RC_SIGN_IN = 200;
-    //private static final String TAG = "LOGIN_ACTIVITY";
     private TextView txtPrivacidade;
     private TextView txtVersao;
     private ProgressDialog dialog;

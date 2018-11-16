@@ -8,58 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:491753227076:android:297cc59fdb8cfb02",
-        "android_client_info": {
-          "package_name": "com.example.josefernandes.convert"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "491753227076-c669vrvla9bh702m8mbr80lilmir19qr.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.josefernandes.convert",
-            "certificate_hash": "0cc66a7d48fdb16fceca4535323b29d4c6463a2c"
-          }
-        },
-        {
-          "client_id": "491753227076-7up8mqn4okugm91b7252bmsokgp45lsl.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.josefernandes.convert",
-            "certificate_hash": "6a9363be6bc6ef41b05329f82876eab10b0444b8"
-          }
-        },
-        {
-          "client_id": "491753227076-pf1fkhen1va1nb1euik10drh015p5phg.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyDsS3r5iamEehD05E3EfP3jgzrgQ_Fb91E"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "491753227076-pf1fkhen1va1nb1euik10drh015p5phg.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:491753227076:android:19f2a6ddd2f3417b",
         "android_client_info": {
           "package_name": "com.josefernandes.convert"
@@ -67,11 +15,19 @@
       },
       "oauth_client": [
         {
-          "client_id": "491753227076-n85ohvgo19n3h11ntrcf8e3nntprgejk.apps.googleusercontent.com",
+          "client_id": "491753227076-rhageql2pru2cru5joe0kp0a62aaqip5.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.josefernandes.convert",
-            "certificate_hash": "6a9363be6bc6ef41b05329f82876eab10b0444b8"
+            "certificate_hash": "b2b7031f2dd5c958d138e7fc54597c4a6fcf68d7"
+          }
+        },
+        {
+          "client_id": "491753227076-ddhicn2it9pou0fd1rcorgmbiphn987a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.josefernandes.convert",
+            "certificate_hash": "e3146bd1520a642221588ab804e887b00d4495d8"
           }
         },
         {
@@ -100,7 +56,8 @@
         "ads_service": {
           "status": 2
         }
-      }
+      },
+      "admob_app_id": "ca-app-pub-8478899305646131~9649848212"
     }
   ],
   "configuration_version": "1"

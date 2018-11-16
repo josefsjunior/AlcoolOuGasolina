@@ -69,8 +69,8 @@ public class ConvertActivity extends AppCompatActivity {
             }
         };
 
-        DatabaseReference reference = ConfiguracaoFirebase.getFirebase();
-        reference.child("users").setValue(mAuth.getUid());
+        //DatabaseReference reference = ConfiguracaoFirebase.getFirebase();
+        //reference.child("users").setValue(mAuth.getUid());
         inicializarComponentes();
         inserirTextoCombustiveis();
         inicializarAnalytics();

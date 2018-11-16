@@ -23,7 +23,6 @@ public class FormularioCarroActivity extends AppCompatActivity {
     private EditText edtEtanolCidade;
     private EditText edtEtanolEstrada;
 
-    private DatabaseReference referenciaDatabase;
     private Carro carro;
     private CarroRepository carroRepository;
 
@@ -58,8 +57,6 @@ public class FormularioCarroActivity extends AppCompatActivity {
                 if (!preencheuFormulario()) {
                     Toast.makeText(this, "Preencha todos os campos", Toast.LENGTH_SHORT).show();
                 } else {
-                    referenciaDatabase = ConfiguracaoFirebase.getFirebase();
-                    referenciaDatabase.child(FirebaseAuth.getInstance().getUid()).child("carros").setValue(carro);
                     carroRepository = new CarroRepository();
                     carroRepository.salvar(carro);
                     startActivity(new Intent(this, CarroActivity.class));

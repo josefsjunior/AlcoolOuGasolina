@@ -21,3 +21,5 @@
 #-renamesourcefileattribute SourceFile
 -keepattributes Signature
 -keepattributes *Annotation*
+
+-keep public class com.josefernandes.convert.classes.Carro

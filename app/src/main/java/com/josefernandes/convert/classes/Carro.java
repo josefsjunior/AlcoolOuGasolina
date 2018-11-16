@@ -1,13 +1,22 @@
 package com.josefernandes.convert.classes;
 
+import android.support.annotation.Keep;
+
 import java.util.Comparator;
 
+@Keep
 public class Carro implements Comparator{
+    private String id;
+
     private String apelido;
     private double gasolinaCidade;
     private double gasolinaEstrada;
     private double etanolCidade;
     private double etanolEstrada;
+
+    private static int contador = 1;
+
+    public Carro(){ }
 
     public Carro(String apelido, double gasolinaCidade, double gasolinaEstrada, double etanolCidade, double etanolEstrada) {
         this.apelido = apelido;
@@ -15,6 +24,8 @@ public class Carro implements Comparator{
         this.gasolinaEstrada = gasolinaEstrada;
         this.etanolCidade = etanolCidade;
         this.etanolEstrada = etanolEstrada;
+        this.setId( String.valueOf(contador) );
+        contador++;
     }
 
     public String getApelido() {
@@ -55,6 +66,14 @@ public class Carro implements Comparator{
 
     public void setEtanolEstrada(double etanolEstrada) {
         this.etanolEstrada = etanolEstrada;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

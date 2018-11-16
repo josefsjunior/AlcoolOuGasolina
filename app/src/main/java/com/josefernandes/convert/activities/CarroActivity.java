@@ -3,27 +3,30 @@ package com.josefernandes.convert.activities;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.josefernandes.convert.R;
 import com.josefernandes.convert.adapter.CarroAdapter;
 import com.josefernandes.convert.classes.Carro;
+import com.josefernandes.convert.repository.CarroRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CarroActivity extends AppCompatActivity {
 
-    private DatabaseReference databaseReference;
-
-    //private List<Carro> carros;
-
-
     private ListView listViewCarros;
+
+    private CarroAdapter adapter;
+
+    private List<Carro> carros;
+    private CarroRepository carroRepository;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +36,12 @@ public class CarroActivity extends AppCompatActivity {
         setTitle("Carros");
 
         listViewCarros = findViewById(R.id.carro_listview);
+        carroRepository = new CarroRepository();
+        carros = carroRepository.buscarCarrosDoUsuario(FirebaseAuth.getInstance().getUid());
+        //Log.i("carros", carros.get(0).getApelido());
+        Log.i("UID", FirebaseAuth.getInstance().getUid());
 
-        List<Carro> carros = gerarListaDeCarros();
-
-        CarroAdapter adapter = new CarroAdapter(this,  carros);
+        adapter = new CarroAdapter(this,  carros);
         listViewCarros.setAdapter(adapter);
 
     }
@@ -58,7 +63,6 @@ public class CarroActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
             case R.id.menu_carro_novo:
-                Toast.makeText(this, "Clicou para adiconar um novo carro", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(this, FormularioCarroActivity.class));
                 break;
         }
